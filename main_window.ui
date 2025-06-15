@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Reproductor Jellyfin - Estilo Winamp</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #2b2b2b;
+    color: #ffffff;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>2</number>
+    </property>
+    <property name="leftMargin">
+     <number>4</number>
+    </property>
+    <property name="topMargin">
+     <number>4</number>
+    </property>
+    <property name="rightMargin">
+     <number>4</number>
+    </property>
+    <property name="bottomMargin">
+     <number>4</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="titleFrame">
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="lineWidth">
+       <number>2</number>
+      </property>
+      <property name="midLineWidth">
+       <number>1</number>
+      </property>
+      <layout class="QHBoxLayout" name="titleLayout">
+       <item>
+        <widget class="QLabel" name="statusLabel">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: bold;
+}</string>
+         </property>
+         <property name="text">
+          <string>Conectando a Jellyfin...</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="minimizeButton">
+         <property name="maximumSize">
+          <size>
+           <width>20</width>
+           <height>16</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}</string>
+         </property>
+         <property name="text">
+          <string>_</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="mainPanel">
+      <item>
+       <widget class="QFrame" name="leftPanel">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <layout class="QVBoxLayout" name="leftPanelLayout">
+         <item>
+          <widget class="QFrame" name="controlsFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QVBoxLayout" name="controlsLayout">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <item>
+             <widget class="QProgressBar" name="progressBar">
+              <property name="visible">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QProgressBar {
+    border: 1px solid #404040;
+    border-radius: 2px;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-size: 8px;
+}
+QProgressBar::chunk {
+    background-color: #00ff00;
+    border-radius: 1px;
+}</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="timeLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: bold;
+}</string>
+              </property>
+              <property name="text">
+               <string>00:00 / 00:00</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="buttonsLayout">
+              <property name="spacing">
+               <number>2</number>
+              </property>
+              <item>
+               <widget class="QPushButton" name="prevButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #000000;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #000000;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}
+QPushButton:disabled {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    color: #666666;
+}</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons/previous.png</normaloff>icons/previous.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="playButton">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}</string>
+                </property>
+                <property name="text">
+                 <string>▶</string>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pauseButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}
+QPushButton:disabled {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    color: #666666;
+}</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons/pause.png</normaloff>icons/pause.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="stopButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}
+QPushButton:disabled {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    color: #666666;
+}</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons/stop.png</normaloff>icons/stop.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="nextButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}
+QPushButton:disabled {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    color: #666666;
+}</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>icons/next.png</normaloff>icons/next.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="albumsFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QVBoxLayout" name="albumsLayout">
+            <item>
+             <layout class="QHBoxLayout" name="searchLayout">
+              <item>
+               <widget class="QLabel" name="searchLabel">
+                <property name="styleSheet">
+                 <string notr="true">QLabel {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: bold;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Buscar:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="searchInput">
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit {
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    color: #ffffff;
+    padding: 2px 4px;
+    font-size: 9px;
+}</string>
+                </property>
+                <property name="placeholderText">
+                 <string>Buscar álbumes...</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="refreshButton">
+                <property name="maximumSize">
+                 <size>
+                  <width>24</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}</string>
+                </property>
+                <property name="text">
+                 <string>🔄</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QListWidget" name="albumsList">
+              <property name="styleSheet">
+               <string notr="true">QListWidget {
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 9px;
+    selection-background-color: #404040;
+    selection-color: #ffffff;
+}
+QListWidget::item {
+    padding: 2px 4px;
+    border-bottom: 1px solid #2a2a2a;
+}
+QListWidget::item:selected {
+    background-color: #404040;
+}
+QListWidget::item:hover {
+    background-color: #303030;
+}</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="centerPanel">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <layout class="QVBoxLayout" name="centerPanelLayout">
+         <item>
+          <widget class="QFrame" name="infoFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QVBoxLayout" name="infoLayout">
+            <item>
+             <widget class="QLabel" name="albumInfoLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    padding: 4px;
+    font-size: 10px;
+    color: #ffffff;
+}</string>
+              </property>
+              <property name="text">
+               <string>Selecciona un álbum</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="currentSongLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    padding: 4px;
+    font-size: 10px;
+    color: #ffffff;
+}</string>
+              </property>
+              <property name="text">
+               <string>Ninguna canción</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="audioFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QGridLayout" name="audioLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="volLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: bold;
+}</string>
+              </property>
+              <property name="text">
+               <string>Vol:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSlider" name="volumeSlider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #404040;
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+QSlider::handle:horizontal {
+    background: #00ff00;
+    border: 1px solid #ffffff;
+    width: 12px;
+    margin: -2px 0;
+    border-radius: 6px;
+}</string>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="value">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="balLabel">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: bold;
+}</string>
+              </property>
+              <property name="text">
+               <string>Bal:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QSlider" name="balanceSlider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #404040;
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+}
+QSlider::handle:horizontal {
+    background: #00ff00;
+    border: 1px solid #ffffff;
+    width: 12px;
+    margin: -2px 0;
+    border-radius: 6px;
+}</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="albumButtonsFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QVBoxLayout" name="albumButtonsLayout">
+            <item>
+             <layout class="QHBoxLayout" name="albumButtons">
+              <item>
+               <widget class="QPushButton" name="addAllButton">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Agregar álbum</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="playAlbumButton">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Reproducir álbum</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="queueButtons">
+              <item>
+               <widget class="QPushButton" name="clearQueueButton">
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Limpiar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="shuffleButton">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+    background-color: #404040;
+    border: 1px solid #606060;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 9px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #505050;
+    border: 1px solid #707070;
+}
+QPushButton:pressed {
+    background-color: #303030;
+    border: 1px solid #505050;
+}
+QPushButton:disabled {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+    color: #666666;
+}</string>
+                </property>
+                <property name="text">
+                 <string>Aleatorio</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="rightPanel">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <layout class="QVBoxLayout" name="rightPanelLayout">
+         <item>
+          <widget class="QFrame" name="songsFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QVBoxLayout" name="songsLayout">
+            <item>
+             <widget class="QListWidget" name="songsList">
+              <property name="styleSheet">
+               <string notr="true">QListWidget {
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 9px;
+    selection-background-color: #404040;
+    selection-color: #ffffff;
+}
+QListWidget::item {
+    padding: 2px 4px;
+    border-bottom: 1px solid #2a2a2a;
+}
+QListWidget::item:selected {
+    background-color: #404040;
+}
+QListWidget::item:hover {
+    background-color: #303030;
+}</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QFrame" name="queueFrame">
+           <property name="styleSheet">
+            <string notr="true">QFrame {
+    background-color: #2b2b2b;
+    border: 2px solid #404040;
+    border-radius: 3px;
+    color: #ffffff;
+}</string>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="lineWidth">
+            <number>2</number>
+           </property>
+           <property name="midLineWidth">
+            <number>1</number>
+           </property>
+           <layout class="QVBoxLayout" name="queueLayout">
+            <item>
+             <widget class="QListWidget" name="queueList">
+              <property name="styleSheet">
+               <string notr="true">QListWidget {
+    background-color: #1a1a1a;
+    border: 1px solid #404040;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 9px;
+    selection-background-color: #404040;
+    selection-color: #ffffff;
+}
+QListWidget::item {
+    padding: 2px 4px;
+    border-bottom: 1px solid #2a2a2a;
+}
+QListWidget::item:selected {
+    background-color: #404040;
+}
+QListWidget::item:hover {
+    background-color: #303030;
+}</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QWidget" name="visualizerWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="visible">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #000000; border: 1px solid #404040;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
