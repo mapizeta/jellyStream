@@ -3,7 +3,7 @@
 
 # Configuración de la interfaz
 INTERFACE_CONFIG = {
-    "window_title": "Reproductor Jellyfin - Estilo Winamp",
+    "window_title": "Reproductor jellyStream",
     "window_size": (1000, 700),
     "theme": "winamp",
     "auto_connect": True,
